@@ -14,7 +14,7 @@
     <defaultTriggerIds>
         <string>hudson.plugins.emailext.plugins.trigger.FailureTrigger</string>
     </defaultTriggerIds>
-    <emergencyReroute></emergencyReroute>
+    <emergencyReroute>{{ jenkins_email }}</emergencyReroute>
     <maxAttachmentSize>-1</maxAttachmentSize>
     <recipientList>{{ jenkins_email }}</recipientList>
     <defaultReplyTo></defaultReplyTo>

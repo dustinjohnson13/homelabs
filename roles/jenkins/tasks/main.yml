@@ -18,6 +18,10 @@
   apt: name={{item}} state=present
   with_items:
     - jenkins
+    - virtualenv # Required by flexget
+    # Required by photo/video processing
+    - libimage-exiftool-perl
+    - par2
 
 - name: Shutdown applications for configuration
   service: name={{item}} state=stopped
