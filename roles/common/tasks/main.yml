@@ -1,4 +1,5 @@
 ---
+- include_vars: main.yml
 - include_vars: vault.yml
 
 - name: Install jenkins apt repository key
@@ -15,7 +16,9 @@
   apt: name={{item}} state=present
   with_items:
     - jenkins
+    - nfs-kernel-server
     - ntp
+    - samba
     - transmission-daemon
     - transmission-cli
 
@@ -24,22 +27,10 @@
   with_items:
     - jenkins
     - transmission-daemon
-
-- name: Copy transmission-daemon configuration file
-  template:
-    src: transmission-daemon/settings.json
-    dest: /etc/transmission-daemon/settings.json
-    owner: debian-transmission
-    group: debian-transmission
-    mode: 0600
-
-- name: Copy jenkins configuration file
-  template:
-    src: jenkins/config.xml
-    dest: /var/lib/jenkins/config.xml
-    owner: jenkins
-    group: jenkins
-    mode: 0622
+    
+- name: Copy configuration files
+  template: src={{ item.value.src }} dest={{ item.value.dest }} owner={{ item.value.owner }} group={{ item.value.group }} mode={{ item.value.mode }}
+  with_dict: "{{ config_files }}"
 
 - name: Create necessary transmission-daemon directories
   file: path={{item}} owner=debian-transmission group=debian-transmission state=directory mode=0777

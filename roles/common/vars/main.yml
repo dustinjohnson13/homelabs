@@ -1,0 +1,30 @@
+transmission_blocklist_enabled: false
+transmission_blocklist_url: http://list.iblocklist.com/?list=bt_level2&fileformat=p2p&archiveformat=gz
+transmission_ratio_limit: 0
+transmission_torrent_dir: /data/apps/torrent
+
+config_files:
+  transmission-daemon-settings:
+    src: transmission-daemon/settings.json
+    dest: /etc/transmission-daemon/settings.json
+    owner: debian-transmission
+    group: debian-transmission
+    mode: "0600"
+  jenkins-config:
+    src: jenkins/config.xml
+    dest: /var/lib/jenkins/config.xml
+    owner: jenkins
+    group: jenkins
+    mode: "0622"
+  nfs-exports:
+    src: nfs/exports
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode: "0622"
+  samba:
+    src: samba/smb.conf
+    dest: /etc/samba/smb.conf
+    owner: root
+    group: root
+    mode: "0622"
