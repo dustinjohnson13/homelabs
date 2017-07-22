@@ -18,6 +18,8 @@
   apt: name={{item}} state=present
   with_items:
     - jenkins
+    - python-jenkins
+    - python-lxml
     - virtualenv # Required by flexget
     # Required by photo/video processing
     - libimage-exiftool-perl
@@ -55,3 +57,10 @@
   service:
     name: jenkins
     state: restarted
+
+- name: Wait until Jenkins web interface is available
+  wait_for: "host=localhost port=8080 state=present delay=30 timeout=300"
+
+- name: Configure jobs
+  jenkins_job: config="{{ lookup('template', 'job-config.xml') }}" name='{{ item.key }}' url=http://localhost:8080
+  with_dict: "{{ jobs }}"
