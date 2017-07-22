@@ -31,6 +31,15 @@
     src: "downloads/UMS-{{ ums_version }}.tgz"
     dest: "{{ apps_dir }}"
 
+- name: Copy Plex to server
+  copy:
+    src: software/plexmediaserver_1.7.5.4035-313f93718_amd64.deb
+    dest: /tmp/plex.deb
+
+- name: Install Plex
+  apt:
+    deb: /tmp/plex.deb
+
 - name: Shutdown applications for configuration
   service: name={{item}} state=stopped
   with_items:
@@ -51,3 +60,4 @@
   with_items:
     - jenkins
     - transmission-daemon
+    - UMS
