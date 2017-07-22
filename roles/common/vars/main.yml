@@ -11,6 +11,13 @@ transmission_ratio_limit: 0
 transmission_torrent_dir: "{{ apps_dir }}/torrent"
 transmission_watch_dir: "{{ transmission_torrent_dir }}/queue"
 
+plex_version: 1.7.5.4035-313f93718
+plex_file: "plexmediaserver_{{ plex_version }}_amd64.deb"
+
+ums_version: 6.7.2
+ums_dir: "{{ apps_dir }}/ums-{{ ums_version }}"
+ums_file: "UMS-{{ ums_version }}.tgz"
+
 directories:
   transmission-daemon:
     path: "{{ transmission_torrent_dir }}"
@@ -49,8 +56,20 @@ config_files:
     group: root
     mode: "0622"
   gradle_properties:
-      src: jenkins/gradle.properties
-      dest: /var/lib/jenkins/.gradle/gradle.properties
-      owner: jenkins
-      group: jenkins
-      mode: "0600"
+    src: jenkins/gradle.properties
+    dest: /var/lib/jenkins/.gradle/gradle.properties
+    owner: jenkins
+    group: jenkins
+    mode: "0600"
+  ums_configuration:
+    src: ums/UMS.conf
+    dest: "{{ ums_dir }}/UMS.conf"
+    owner: root
+    group: root
+    mode: "0622"
+  ums_startup_script:
+    src: ums/UMS
+    dest: /etc/init.d/UMS
+    owner: root
+    group: root
+    mode: "0755"

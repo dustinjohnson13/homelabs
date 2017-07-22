@@ -22,20 +22,29 @@
     - transmission-daemon
     - transmission-cli
 
+- name: Create necessary directories
+  file: path={{ item.value.path }} owner={{ item.value.owner }} group={{ item.value.group }} state=directory mode={{ item.value.mode }}
+  with_dict: "{{ directories }}"
+
+- name: Install Universal Media Server
+  unarchive:
+    src: "downloads/UMS-{{ ums_version }}.tgz"
+    dest: "{{ apps_dir }}"
+
 - name: Shutdown applications for configuration
   service: name={{item}} state=stopped
   with_items:
     - jenkins
     - transmission-daemon
 
-- name: Create necessary directories
-  file: path={{ item.value.path }} owner={{ item.value.owner }} group={{ item.value.group }} state=directory mode={{ item.value.mode }}
-  with_dict: "{{ directories }}"
-
 - name: Copy configuration files
   template: src={{ item.value.src }} dest={{ item.value.dest }} owner={{ item.value.owner }} group={{ item.value.group }} mode={{ item.value.mode }}
   with_dict: "{{ config_files }}"
 
+- name: Enable the Universal Media Server service
+  service:
+    name: UMS
+    enabled: yes
 
 - name: Startup applications
   service: name={{item}} state=started
