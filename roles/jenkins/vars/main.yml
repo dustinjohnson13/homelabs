@@ -11,7 +11,13 @@ config_files:
     dest: /var/lib/jenkins/config.xml
     owner: jenkins
     group: jenkins
-    mode: "0622"
+    mode: "0644"
+  jenkins-service-config:
+    src: jenkins
+    dest: /etc/default/jenkins
+    owner: jenkins
+    group: jenkins
+    mode: "0644"
   gradle_properties:
     src: gradle.properties
     dest: /var/lib/jenkins/.gradle/gradle.properties
