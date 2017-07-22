@@ -27,15 +27,15 @@
   with_items:
     - jenkins
     - transmission-daemon
-    
+
+- name: Create necessary directories
+  file: path={{ item.value.path }} owner={{ item.value.owner }} group={{ item.value.group }} state=directory mode={{ item.value.mode }}
+  with_dict: "{{ directories }}"
+
 - name: Copy configuration files
   template: src={{ item.value.src }} dest={{ item.value.dest }} owner={{ item.value.owner }} group={{ item.value.group }} mode={{ item.value.mode }}
   with_dict: "{{ config_files }}"
 
-- name: Create necessary transmission-daemon directories
-  file: path={{item}} owner=debian-transmission group=debian-transmission state=directory mode=0777
-  with_items:
-    - "{{ transmission_torrent_dir }}"
 
 - name: Startup applications
   service: name={{item}} state=started

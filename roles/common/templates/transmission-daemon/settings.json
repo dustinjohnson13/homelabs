@@ -14,7 +14,7 @@
   "blocklist-url": "{{ transmission_blocklist_url }}",
   "cache-size-mb": 4,
   "dht-enabled": true,
-  "download-dir": "{{ transmission_torrent_dir }}/complete",
+  "download-dir": "{{ transmission_complete_dir }}",
   "download-limit": 100,
   "download-limit-enabled": 0,
   "download-queue-enabled": true,
@@ -22,7 +22,7 @@
   "encryption": 1,
   "idle-seeding-limit": 30,
   "idle-seeding-limit-enabled": false,
-  "incomplete-dir": "{{ transmission_torrent_dir }}/incomplete",
+  "incomplete-dir": "{{ transmission_incomplete_dir }}",
   "incomplete-dir-enabled": true,
   "lpd-enabled": false,
   "max-peers-global": 200,
@@ -71,6 +71,6 @@
   "upload-slots-per-torrent": 14,
   "user-has-given-informed-consent": true,
   "utp-enabled": true,
-  "watch-dir": "{{ transmission_torrent_dir }}/queue",
+  "watch-dir": "{{ transmission_watch_dir }}",
   "watch-dir-enabled": true
 }

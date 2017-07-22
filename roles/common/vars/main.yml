@@ -1,7 +1,27 @@
+data_dir: /data
+apps_dir: "{{ data_dir }}/apps"
+archives_dir: "{{ data_dir }}/archives"
+tv_dir: "{{ archives_dir }}/video/tv"
+
 transmission_blocklist_enabled: false
 transmission_blocklist_url: http://list.iblocklist.com/?list=bt_level2&fileformat=p2p&archiveformat=gz
+transmission_complete_dir: "{{ transmission_torrent_dir }}/complete"
+transmission_incomplete_dir: "{{ transmission_torrent_dir }}/incomplete"
 transmission_ratio_limit: 0
-transmission_torrent_dir: /data/apps/torrent
+transmission_torrent_dir: "{{ apps_dir }}/torrent"
+transmission_watch_dir: "{{ transmission_torrent_dir }}/queue"
+
+directories:
+  transmission-daemon:
+    path: "{{ transmission_torrent_dir }}"
+    owner: debian-transmission
+    group: debian-transmission
+    mode: "0777"
+  jenkins-gradle:
+    path: /var/lib/jenkins/.gradle
+    owner: jenkins
+    group: jenkins
+    mode: "0755"
 
 config_files:
   transmission-daemon-settings:
@@ -28,3 +48,9 @@ config_files:
     owner: root
     group: root
     mode: "0622"
+  gradle_properties:
+      src: jenkins/gradle.properties
+      dest: /var/lib/jenkins/.gradle/gradle.properties
+      owner: jenkins
+      group: jenkins
+      mode: "0600"
