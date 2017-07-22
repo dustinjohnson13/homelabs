@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Preferences OldestPreviousVersion="1.7.5.4035-313f93718" MachineIdentifier="fb1a60bf-7e1f-4253-b36e-c8642a7193b4" ProcessedMachineIdentifier="6cf478e458917efb8055adc1e713f7508516cc16" AnonymousMachineIdentifier="495e9104-daf0-4183-bc12-358b94f595ca" MetricsEpoch="1" GracenoteUser="WEcxA6hZkGwNIjvVOf/N52e55Q4/8svlBhmnEf2q+xwj2bB8X30p5OzWCYaP2zoANCHGLImRulT9DNE5qOzKh24dSXncsLjhBHXop1UnPBTiOXU4zBIB0iPPWwfM7/1BulvDR9oOjSXTN97exHc1RZ7TdspWbpf/dh3Fy/R1eRnrpeY44Nx+2c+Nvl4QxOIk"/>
+<Preferences OldestPreviousVersion="{{ plex_version }}" MachineIdentifier="{{ plex_machine_identifier }}"
+             ProcessedMachineIdentifier="{{ plex_processed_machine_identifier }}"
+             AnonymousMachineIdentifier="{{ plex_anonymous_machine_identifier }}" MetricsEpoch="1"
+             GracenoteUser="{{ plex_gracenote_user }}"
+             AcceptedEULA="1" FriendlyName="plex1" PublishServerOnPlexOnlineKey="0"
+             PlexOnlineToken="{{ plex_online_token }}" PlexOnlineUsername="{{ plex_email }}"
+             PlexOnlineMail="{{ plex_email }}" PlexOnlineHome="0" DlnaEnabled="1" CertificateVersion="2"
+             PubSubServer="139.162.164.202" PubSubServerRegion="fra" PubSubServerPing="2837" collectUsageData="0"
+             allowedNetworks="{{ base_network }}/255.255.255.0" LanguageInCloud="1" FSEventLibraryUpdatesEnabled="0"
+             ScheduledLibraryUpdateInterval="7200" ScheduledLibraryUpdatesEnabled="1" CloudSyncNeedsUpdate="0"/>

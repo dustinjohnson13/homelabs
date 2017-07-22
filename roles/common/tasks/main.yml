@@ -28,22 +28,23 @@
 
 - name: Install Universal Media Server
   unarchive:
-    src: "downloads/UMS-{{ ums_version }}.tgz"
+    src: "downloads/{{ ums_file }}"
     dest: "{{ apps_dir }}"
 
 - name: Copy Plex to server
   copy:
-    src: software/plexmediaserver_1.7.5.4035-313f93718_amd64.deb
-    dest: /tmp/plex.deb
+    src: "downloads/{{ plex_file }}"
+    dest: "/tmp/{{ plex_file }}"
 
 - name: Install Plex
   apt:
-    deb: /tmp/plex.deb
+    deb: "/tmp/{{ plex_file }}"
 
 - name: Shutdown applications for configuration
   service: name={{item}} state=stopped
   with_items:
     - jenkins
+    - plexmediaserver
     - transmission-daemon
 
 - name: Copy configuration files
@@ -59,5 +60,6 @@
   service: name={{item}} state=started
   with_items:
     - jenkins
+    - plexmediaserver
     - transmission-daemon
     - UMS
