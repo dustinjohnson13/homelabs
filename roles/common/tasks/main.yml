@@ -1,0 +1,53 @@
+---
+- include_vars: vault.yml
+
+- name: Install jenkins apt repository key
+  apt_key:
+    url: "https://pkg.jenkins.io/debian-stable/jenkins.io.key"
+    state: present
+
+- name: Install jenkins apt repository
+  apt_repository:
+    repo: deb https://pkg.jenkins.io/debian-stable binary/
+    state: present
+
+- name: Install list of packages
+  apt: name={{item}} state=present
+  with_items:
+    - jenkins
+    - ntp
+    - transmission-daemon
+    - transmission-cli
+
+- name: Shutdown applications for configuration
+  service: name={{item}} state=stopped
+  with_items:
+    - jenkins
+    - transmission-daemon
+
+- name: Copy transmission-daemon configuration file
+  template:
+    src: transmission-daemon/settings.json
+    dest: /etc/transmission-daemon/settings.json
+    owner: debian-transmission
+    group: debian-transmission
+    mode: 0600
+
+- name: Copy jenkins configuration file
+  template:
+    src: jenkins/config.xml
+    dest: /var/lib/jenkins/config.xml
+    owner: jenkins
+    group: jenkins
+    mode: 0622
+
+- name: Create necessary transmission-daemon directories
+  file: path={{item}} owner=debian-transmission group=debian-transmission state=directory mode=0777
+  with_items:
+    - "{{ transmission_torrent_dir }}"
+
+- name: Startup applications
+  service: name={{item}} state=started
+  with_items:
+    - jenkins
+    - transmission-daemon

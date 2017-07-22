@@ -1,0 +1,7 @@
+---
+# Variables listed here are applicable to all host groups
+
+transmission_blocklist_enabled: false
+transmission_blocklist_url: http://list.iblocklist.com/?list=bt_level2&fileformat=p2p&archiveformat=gz
+transmission_ratio_limit: 0
+transmission_torrent_dir: /data/apps/torrent
