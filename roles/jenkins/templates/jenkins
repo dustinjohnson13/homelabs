@@ -9,7 +9,8 @@ JAVA=/usr/bin/java
 # arguments to pass to java
 
 # Allow graphs etc. to work even when an X server is present
-JAVA_ARGS="-Djava.awt.headless=true"
+# Disable the setup wizard
+JAVA_ARGS="-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false"
 
 #JAVA_ARGS="-Xmx256m"
 
