@@ -36,3 +36,18 @@
   service: name={{item}} state=started
   with_items:
     - jenkins
+
+- name: Wait until Jenkins web interface is available
+  wait_for: "host=localhost port=8080 state=present delay=30 timeout=300"
+
+- name: Install plugins
+  jenkins_plugin: name={{ item }}
+  with_items:
+    - email-ext
+    - git
+    - workflow-aggregator
+
+- name: Restart Jenkins
+  service:
+    name: jenkins
+    state: restarted

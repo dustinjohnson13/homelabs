@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.emailext.ExtendedEmailPublisherDescriptor plugin="email-ext@2.58">
+    <smtpAuthUsername>{{ jenkins_email }}</smtpAuthUsername>
+    <smtpAuthPassword>{AQAAABAAAAAgm90LvyVgET8gJQjsHfS6uJAd4EyL0KE5iux4x4LSVo3lv8gbZhO2bHQyApdinja0}</smtpAuthPassword>
+    <smtpHost>smtp.gmail.com</smtpHost>
+    <useSsl>true</useSsl>
+    <defaultSubject>$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!</defaultSubject>
+    <defaultBody>$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+        Check console output at $BUILD_URL to view the results.</defaultBody>
+    <defaultPresendScript></defaultPresendScript>
+    <defaultPostsendScript></defaultPostsendScript>
+    <defaultClasspath/>
+    <defaultTriggerIds>
+        <string>hudson.plugins.emailext.plugins.trigger.FailureTrigger</string>
+    </defaultTriggerIds>
+    <emergencyReroute></emergencyReroute>
+    <maxAttachmentSize>-1</maxAttachmentSize>
+    <recipientList>{{ jenkins_email }}</recipientList>
+    <defaultReplyTo></defaultReplyTo>
+    <excludedCommitters></excludedCommitters>
+    <overrideGlobalSettings>true</overrideGlobalSettings>
+    <precedenceBulk>false</precedenceBulk>
+    <debugMode>false</debugMode>
+    <requireAdminForTemplateTesting>false</requireAdminForTemplateTesting>
+    <enableWatching>false</enableWatching>
+</hudson.plugins.emailext.ExtendedEmailPublisherDescriptor>
