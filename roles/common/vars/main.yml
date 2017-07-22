@@ -1,6 +1,9 @@
 data_dir: /data
 apps_dir: "{{ data_dir }}/apps"
 archives_dir: "{{ data_dir }}/archives"
+education_videos_dir: "{{ archives_dir }}/video/education"
+movies_dir: "{{ archives_dir }}/video/movies"
+music_dir: "{{ archives_dir }}/audio/music"
 tv_dir: "{{ archives_dir }}/video/tv"
 
 transmission_blocklist_enabled: false
