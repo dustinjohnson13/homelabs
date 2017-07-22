@@ -1,7 +1,9 @@
 ---
-- name: apply common configuration to all nodes
+- name: apply configuration
   hosts: all
   become: true
 
   roles:
-    - common
+    - dataserver
+    - jenkins
+    - mediaserver

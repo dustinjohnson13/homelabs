@@ -1,0 +1,45 @@
+transmission_blocklist_enabled: false
+transmission_blocklist_url: http://list.iblocklist.com/?list=bt_level2&fileformat=p2p&archiveformat=gz
+transmission_ratio_limit: 0
+transmission_torrent_dir: "{{ apps_dir }}/torrent"
+transmission_watch_dir: "{{ transmission_torrent_dir }}/queue"
+
+plex_version: 1.7.5.4035-313f93718
+plex_file: "plexmediaserver_{{ plex_version }}_amd64.deb"
+
+ums_version: 6.7.2
+ums_dir: "{{ apps_dir }}/ums-{{ ums_version }}"
+ums_file: "UMS-{{ ums_version }}.tgz"
+
+directories:
+  transmission-daemon:
+    path: "{{ transmission_torrent_dir }}"
+    owner: debian-transmission
+    group: debian-transmission
+    mode: "0777"
+
+config_files:
+  transmission-daemon-settings:
+    src: transmission-daemon/settings.json
+    dest: /etc/transmission-daemon/settings.json
+    owner: debian-transmission
+    group: debian-transmission
+    mode: "0600"
+  plex:
+    src: plex/Preferences.xml
+    dest: /var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Preferences.xml
+    owner: plex
+    group: plex
+    mode: "0600"
+  ums_configuration:
+    src: ums/UMS.conf
+    dest: "{{ ums_dir }}/UMS.conf"
+    owner: root
+    group: root
+    mode: "0622"
+  ums_startup_script:
+    src: ums/UMS
+    dest: /etc/init.d/UMS
+    owner: root
+    group: root
+    mode: "0755"

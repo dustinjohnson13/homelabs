@@ -1,0 +1,20 @@
+directories:
+  jenkins-gradle:
+    path: /var/lib/jenkins/.gradle
+    owner: jenkins
+    group: jenkins
+    mode: "0755"
+
+config_files:
+  jenkins-config:
+    src: config.xml
+    dest: /var/lib/jenkins/config.xml
+    owner: jenkins
+    group: jenkins
+    mode: "0622"
+  gradle_properties:
+    src: gradle.properties
+    dest: /var/lib/jenkins/.gradle/gradle.properties
+    owner: jenkins
+    group: jenkins
+    mode: "0600"

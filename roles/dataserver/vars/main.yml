@@ -1,0 +1,20 @@
+directories:
+  apps:
+    path: "{{ apps_dir }}"
+    owner: root
+    group: root
+    mode: "0777"
+
+config_files:
+  nfs-exports:
+    src: exports
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode: "0622"
+  samba:
+    src: smb.conf
+    dest: /etc/samba/smb.conf
+    owner: root
+    group: root
+    mode: "0622"
