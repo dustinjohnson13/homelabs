@@ -49,3 +49,6 @@
     - plexmediaserver
     - transmission-daemon
     - UMS
+
+- name: Add ipleak.net torrent to transmission
+  shell: 'transmission-remote -a "{{ transmission_ip_leak_magnet_link }}"'
