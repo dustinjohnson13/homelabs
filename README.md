@@ -9,7 +9,6 @@ Steps
          
         ssh-copy-id -i ~/.ssh/id_rsa <user>@<ip address>
         pip install ansible pyyaml python-jenkins
-        . ~/git/ansible/hacking/env-setup
         ansible-playbook -i '<ip address>,' --vault-password-file=~/.vault_password --ask-become-pass configure.yml
 
 
