@@ -7,38 +7,26 @@
 - name: Install list of packages
   apt: name={{item}} state=present
   with_items:
-    - openjdk-8-jre-headless
+    - transmission-daemon
+    - transmission-cli
 
-- name: Install Universal Media Server
-  unarchive:
-    src: "downloads/{{ ums_file }}"
-    dest: "{{ apps_dir }}"
-
-- name: Copy Plex to server
-  copy:
-    src: "downloads/{{ plex_file }}"
-    dest: "/tmp/{{ plex_file }}"
-
-- name: Install Plex
-  apt:
-    deb: "/tmp/{{ plex_file }}"
+- name: Create necessary directories
+  file: path={{ item.value.path }} owner={{ item.value.owner }} group={{ item.value.group }} state=directory mode={{ item.value.mode }}
+  with_dict: "{{ directories }}"
 
 - name: Shutdown applications for configuration
   service: name={{item}} state=stopped
   with_items:
-    - plexmediaserver
+    - transmission-daemon
 
 - name: Copy configuration files
   template: src={{ item.value.src }} dest={{ item.value.dest }} owner={{ item.value.owner }} group={{ item.value.group }} mode={{ item.value.mode }}
   with_dict: "{{ config_files }}"
 
-- name: Enable the Universal Media Server service
-  service:
-    name: UMS
-    enabled: yes
-
 - name: Startup applications
   service: name={{item}} state=started
   with_items:
-    - plexmediaserver
-    - UMS
+    - transmission-daemon
+
+- name: Add ipleak.net torrent to transmission
+  shell: 'transmission-remote -a "{{ transmission_ip_leak_magnet_link }}"'
