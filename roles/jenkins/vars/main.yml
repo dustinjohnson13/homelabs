@@ -18,12 +18,6 @@ config_files:
     owner: jenkins
     group: jenkins
     mode: "0644"
-  jenkins-email-ext:
-    src: hudson.plugins.emailext.ExtendedEmailPublisher.xml
-    dest: /var/lib/jenkins/hudson.plugins.emailext.ExtendedEmailPublisher.xml
-    owner: jenkins
-    group: jenkins
-    mode: "0644"
   gradle_properties:
     src: gradle.properties
     dest: /var/lib/jenkins/.gradle/gradle.properties

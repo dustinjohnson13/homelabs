@@ -49,7 +49,6 @@
 - name: Install plugins
   jenkins_plugin: name={{ item }}
   with_items:
-    - email-ext
     - git
     - workflow-aggregator
 

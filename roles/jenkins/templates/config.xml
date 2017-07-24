@@ -3,7 +3,7 @@
     <disabledAdministrativeMonitors>
         <string>jenkins.diagnostics.SecurityIsOffMonitor</string>
     </disabledAdministrativeMonitors>
-    <version>1.0</version>
+    <version>2.60.2</version>
     <numExecutors>2</numExecutors>
     <mode>NORMAL</mode>
     <useSecurity>true</useSecurity>
@@ -17,6 +17,7 @@
     <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
     <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
     <clouds/>
+    <quietPeriod>5</quietPeriod>
     <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
     <views>
         <hudson.model.AllView>
@@ -42,9 +43,11 @@
                     <default>
                         <comparator class="hudson.util.CaseInsensitiveComparator"/>
                     </default>
-                    <int>1</int>
-                    <string>EMAIL_PASSWORD</string>
-                    <string>{{ email_password }}</string>
+                    <int>2</int>
+                    <string>EMAIL</string>
+                    <string>{{ jenkins_email }}</string>
+                    <string>NOTIFIER_ENDPOINT</string>
+                    <string>{{ notifier_endpoint }}</string>
                 </tree-map>
             </envVars>
         </hudson.slaves.EnvironmentVariablesNodeProperty>
