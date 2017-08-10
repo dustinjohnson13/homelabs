@@ -50,3 +50,7 @@ jobs:
     repository_url: https://github.com/dustinjohnson13/jenkins-jobs.git
     frequency: ''
     pipeline_file: 'Set_Torrent_Seed_Ratio_Jenkinsfile'
+  CodeMemo:
+    repository_url: https://github.com/dustinjohnson13/flashcard-app.git
+    frequency: 'H/15 * * * *'
+    pipeline_file: 'Jenkinsfile'

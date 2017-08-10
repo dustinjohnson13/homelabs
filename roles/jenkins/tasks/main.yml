@@ -21,6 +21,7 @@
     - python-jenkins
     - python-lxml
     - virtualenv # Required by flexget
+    - youtube-dl
     # Required by photo/video processing
     - libimage-exiftool-perl
     - par2
