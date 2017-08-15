@@ -50,7 +50,11 @@ jobs:
     repository_url: https://github.com/dustinjohnson13/jenkins-jobs.git
     frequency: ''
     pipeline_file: 'Set_Torrent_Seed_Ratio_Jenkinsfile'
-  CodeMemo:
-    repository_url: https://github.com/dustinjohnson13/flashcard-app.git
+  CodeMemo_Client:
+    repository_url: https://github.com/dustinjohnson13/codememo-client.git
+    frequency: 'H/15 * * * *'
+    pipeline_file: 'Jenkinsfile'
+  CodeMemo_Server:
+    repository_url: https://github.com/dustinjohnson13/codememo-server.git
     frequency: 'H/15 * * * *'
     pipeline_file: 'Jenkinsfile'
