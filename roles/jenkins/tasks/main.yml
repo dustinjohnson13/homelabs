@@ -52,6 +52,7 @@
   with_items:
     - git
     - workflow-aggregator
+    - htmlpublisher
 
 - name: Restart Jenkins
   service:
