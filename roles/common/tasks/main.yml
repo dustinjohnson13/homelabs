@@ -5,3 +5,8 @@
 - name: Create necessary directories
   file: path={{ item.value.path }} owner={{ item.value.owner }} group={{ item.value.group }} state=directory mode={{ item.value.mode }}
   with_dict: "{{ directories }}"
+
+- name: Install list of packages
+  apt: name={{item}} state=present
+  with_items:
+    - screen

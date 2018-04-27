@@ -6,7 +6,7 @@
   "alt-speed-time-enabled": false,
   "alt-speed-time-end": 1020,
   "alt-speed-up": 50,
-  "bind-address-ipv4": "0.0.0.0",
+  "bind-address-ipv4": "{{ transmission_bind_ipv4 }}",
   "bind-address-ipv6": "::",
   "blocklist-date": 1385581225,
   "blocklist-enabled": {{ transmission_blocklist_enabled | to_json }},
