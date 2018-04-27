@@ -26,6 +26,10 @@ config_files:
     mode: "0600"
 
 jobs:
+  Cox_Data_Usage_Retriever:
+    repository_url: https://github.com/dustinjohnson13/cox-data-usage-retriever.git
+    frequency: 'H 5 * * *'
+    pipeline_file: 'Jenkinsfile'
   Craigslist_Search:
     repository_url: https://github.com/dustinjohnson13/craigslist.git
     frequency: ''
