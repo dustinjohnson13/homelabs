@@ -17,8 +17,9 @@
 - name: Install list of packages
   apt: name={{item}} state=present
   with_items:
+#    - openjdk-8-jre-headless <- Change to use oracle java after installing apt repo
     - jenkins
-    - python-jenkins
+    - python-pip
     - python-lxml
     - youtube-dl
     - ffmpeg
@@ -101,6 +102,9 @@
 
 - name: Wait until Jenkins web interface is available
   wait_for: "host=localhost port=8080 state=present delay=30 timeout=300"
+
+- name: Install python-jenkins
+  pip: name=python-jenkins
 
 - name: Configure jobs
   jenkins_job: config="{{ lookup('template', 'job-config.xml') }}" name='{{ item.key }}' url=http://localhost:8080
