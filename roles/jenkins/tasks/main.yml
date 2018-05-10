@@ -27,6 +27,7 @@
     # Required by photo/video processing
     - libimage-exiftool-perl
     - par2
+    - rename
     # Required by cox data usage retriever
     - gconf-service
     - libasound2
