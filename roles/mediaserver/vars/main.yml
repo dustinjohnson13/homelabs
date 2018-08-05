@@ -1,4 +1,4 @@
-plex_version: 1.13.0.5023-31d3c0c65
+plex_version: 1.13.5.5291-6fa5e50a8
 plex_file: "plexmediaserver_{{ plex_version }}_amd64.deb"
 
 ums_version: 6.7.2

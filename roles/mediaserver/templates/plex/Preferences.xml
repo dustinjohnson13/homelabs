@@ -6,6 +6,6 @@
              AcceptedEULA="1" FriendlyName="plex1" PublishServerOnPlexOnlineKey="0"
              PlexOnlineToken="{{ plex_online_token }}" PlexOnlineUsername="{{ plex_email }}"
              PlexOnlineMail="{{ plex_email }}" PlexOnlineHome="0" DlnaEnabled="1" CertificateVersion="2"
-             PubSubServer="139.162.164.202" PubSubServerRegion="fra" PubSubServerPing="2837" collectUsageData="0"
+             PubSubServer="45.79.11.43" PubSubServerRegion="dfw" PubSubServerPing="57" collectUsageData="0"
              allowedNetworks="{{ base_network }}/255.255.255.0" LanguageInCloud="1" FSEventLibraryUpdatesEnabled="0"
              ScheduledLibraryUpdateInterval="7200" ScheduledLibraryUpdatesEnabled="1" CloudSyncNeedsUpdate="0"/>

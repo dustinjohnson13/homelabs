@@ -1,0 +1,18 @@
+---
+- include_vars: main.yml
+
+- name: Add Oracle Java Repository
+  become: yes
+  apt_repository: repo={{ oracle_repo }}
+
+- name: Accept Java 8 License
+  become: yes
+  debconf: name='oracle-java8-installer' question={{ oracle_license_question }} value='true' vtype='select'
+
+- name: Install Oracle Java 8
+  become: yes
+  apt: name={{item}} state=latest
+  with_items:
+    - oracle-java8-installer
+    - ca-certificates
+    - oracle-java8-set-default
