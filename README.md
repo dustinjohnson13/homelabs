@@ -10,6 +10,13 @@
 - `pip install ansible pyyaml python-jenkins`
 - `echo '<vault password' > ~/.vault_password`
 - `ansible-playbook -i '<ip address>,' --vault-password-file=~/.vault_password --ask-become-pass configure.yml`
+- Configure Jenkins email-ext plugin with:
+    - smtp.cox.net
+    - SSL
+    - port 465
+    - credentials
+    - jenkins@ubuntuserver.com
+    - Default Recipients
 
 ## For Testing Via VirtualBox
 - Use NAT Network Adapter with port forwards:

@@ -99,6 +99,7 @@
     - git
     - workflow-aggregator
     - htmlpublisher
+    - email-ext
 
 - name: Restart Jenkins
   service:

@@ -46,8 +46,6 @@
                     <int>2</int>
                     <string>EMAIL</string>
                     <string>{{ jenkins_email }}</string>
-                    <string>NOTIFY_COMMAND</string>
-                    <string>{{ notify_command }}</string>
                 </tree-map>
             </envVars>
         </hudson.slaves.EnvironmentVariablesNodeProperty>
