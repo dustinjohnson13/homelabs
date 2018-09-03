@@ -66,3 +66,7 @@ jobs:
     repository_url: https://github.com/dustinjohnson13/codememo-server.git
     frequency: 'H/15 * * * *'
     pipeline_file: 'Jenkinsfile'
+  Forex:
+    repository_url: https://github.com/dustinjohnson13/forex.git
+    frequency: 'H/15 * * * *'
+    pipeline_file: 'Jenkinsfile'
