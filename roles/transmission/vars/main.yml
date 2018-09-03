@@ -14,6 +14,12 @@ directories:
     mode: "0777"
 
 config_files:
+  netconfig:
+    src: netplan/01-netcfg.yaml
+    dest: /etc/netplan/01-netcfg.yaml
+    owner: root
+    group: root
+    mode: "0644"
   transmission-daemon-settings:
     src: transmission-daemon/settings.json
     dest: /etc/transmission-daemon/settings.json

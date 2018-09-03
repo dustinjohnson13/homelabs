@@ -1,0 +1,26 @@
+# This file describes the network interfaces available on your system
+# For more information, see netplan(5).
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp6s0:
+      dhcp4: yes
+      dhcp6: no
+      match:
+        macaddress: {{ vpn_macaddress }}
+      routes:
+      - to: 0.0.0.0/0
+        via: {{ router_ip }}
+        # This forces this route (through the VPN) to not be preferred
+        metric: 3
+    enp7s0:
+      dhcp4: yes
+      dhcp6: no
+      match:
+        macaddress: {{ default_macaddress }}
+      routes:
+      - to: 0.0.0.0/0
+        via: {{ router_ip }}
+        # This forces this route (through ISP) to be preferred
+        metric: 1
