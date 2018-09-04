@@ -1,0 +1,28 @@
+---
+- include_role:
+    name: "{{ role }}"
+  with_items:
+  - common
+  - java
+  loop_control:
+    loop_var: role
+
+- include_vars: main.yml
+
+- name: make forex group
+  user: name={{ forex_group }} state=present system=yes
+
+- name: make forex user
+  user: name={{ forex_user }} state=present system=yes group={{ forex_group }} home={{ forex_user_home }} shell=/usr/sbin/nologin
+
+- name: change owner/group of the forex application to forex
+  file: path={{ forex_user_home }} recurse=yes owner={{ forex_user }} group={{ forex_group }}
+
+- name: install forex systemd file
+  template: src=forex.service dest=/etc/systemd/system/forex.service
+
+- name: enable forex
+  systemd: enabled=yes name=forex daemon_reload=yes
+
+- name: start forex
+  systemd: state=started name=forex

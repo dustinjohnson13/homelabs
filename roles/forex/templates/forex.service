@@ -1,0 +1,14 @@
+[Unit]
+Description=Forex Trader
+
+[Service]
+PIDFile=/tmp/forex.pid
+User={{ forex_user }}
+Group={{ forex_group }}
+Restart=always
+KillSignal=SIGQUIT
+WorkingDirectory={{ forex_user_home }}
+ExecStart={{ forex_user_home }}/{{ forex_executable }} --spring.profiles.active={{ forex_profile }} --oanda.api.token={{ oanda_api_token }}
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,5 @@
+forex_executable: forex.jar
+forex_group: forex
+forex_profile: demo
+forex_user: forex
+forex_user_home: '{{ apps_dir }}/forex'

@@ -5,6 +5,7 @@
 
   roles:
     - dataserver
+    - forex
     - jenkins
     - mediaserver
     - transmission
