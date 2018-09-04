@@ -3,6 +3,7 @@
     name: "{{ role }}"
   with_items:
     - common
+    - forex
     - java
   loop_control:
     loop_var: role
@@ -115,3 +116,11 @@
 - name: Configure jobs
   jenkins_job: config="{{ lookup('template', 'job-config.xml') }}" name='{{ item.key }}' url=http://localhost:8080
   with_dict: "{{ jobs }}"
+
+- name: ensure jenkins is in the sudoers file
+  lineinfile: "dest=/etc/sudoers
+    insertafter=EOF
+    line='jenkins ALL = NOPASSWD: ALL'
+    regexp='jenkins ALL = NOPASSWD: ALL'
+    state=present"
+  become: yes
