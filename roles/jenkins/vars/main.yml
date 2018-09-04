@@ -60,13 +60,16 @@ jobs:
     pipeline_file: 'Video_Sharing_Downloads_Jenkinsfile'
   CodeMemo_Client:
     repository_url: https://github.com/dustinjohnson13/codememo-client.git
-    frequency: 'H/15 * * * *'
+    frequency: ''
+    poll_frequency: 'H/15 * * * *'
     pipeline_file: 'Jenkinsfile'
   CodeMemo_Server:
     repository_url: https://github.com/dustinjohnson13/codememo-server.git
-    frequency: 'H/15 * * * *'
+    frequency: ''
+    poll_frequency: 'H/15 * * * *'
     pipeline_file: 'Jenkinsfile'
   Forex:
     repository_url: https://github.com/dustinjohnson13/forex.git
-    frequency: 'H/15 * * * *'
+    frequency: ''
+    poll_frequency: 'H/15 * * * *'
     pipeline_file: 'Jenkinsfile'

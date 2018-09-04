@@ -11,6 +11,13 @@
                     <spec>{{ item.value.frequency }}</spec>
                 </hudson.triggers.TimerTrigger>
                 {% endif %}
+                
+                {% if item.value.poll_frequency != '' %}
+                <hudson.triggers.SCMTrigger>
+                    <spec>{{ item.value.poll_frequency }}</spec>
+                    <ignorePostCommitHooks>false</ignorePostCommitHooks>
+                </hudson.triggers.SCMTrigger>
+                {% endif %}
             </triggers>
         </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
     </properties>
