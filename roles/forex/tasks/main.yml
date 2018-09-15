@@ -2,12 +2,18 @@
 - include_role:
     name: "{{ role }}"
   with_items:
-  - common
+  - dataserver
   - java
   loop_control:
     loop_var: role
 
 - include_vars: main.yml
+
+- name: Create the database
+  mysql_db: name={{ forex_db }} state=present
+
+- name: Create the database user
+  mysql_user: name={{ forex_db_user }} password={{ forex_db_password }} priv='{{ forex_db }}.*:ALL' state=present
 
 - name: make forex group
   user: name={{ forex_group }} state=present system=yes

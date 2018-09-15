@@ -4,18 +4,63 @@
 
 - include_vars: main.yml
 
+- name: Create necessary directories
+  file: path={{ item.value.path }} owner={{ item.value.owner }} group={{ item.value.group }} state=directory mode={{ item.value.mode }}
+  with_dict: "{{ directories }}"
+
 - name: Install list of packages
   apt: name={{item}} state=present
   with_items:
     - mysql-server-5.7
     - nfs-kernel-server
     - ntp
+    - python-mysqldb
     - samba
 
-- name: Create necessary directories
-  file: path={{ item.value.path }} owner={{ item.value.owner }} group={{ item.value.group }} state=directory mode={{ item.value.mode }}
-  with_dict: "{{ directories }}"
+- name: Stop MySql
+  service:
+    name: mysql
+    state: stopped
+
+- name: Delete current MySql data directory
+  file: path="/var/lib/mysql" state=absent
+
+- name: Create symbolic link for MySql data directory
+  file:
+    src: "{{ mysql_dir }}"
+    path: "/var/lib/mysql"
+    state: link
+
+- name: Make sure mysql owns its data directory
+  file: path={{ mysql_dir }} owner=mysql group=mysql
+  become: yes
 
 - name: Copy configuration files
   template: src={{ item.value.src }} dest={{ item.value.dest }} owner={{ item.value.owner }} group={{ item.value.group }} mode={{ item.value.mode }}
   with_dict: "{{ config_files }}"
+
+- name: Add mysql data directory read/write permissions to AppArmor
+  lineinfile: "dest=/etc/apparmor.d/usr.sbin.mysqld
+    insertafter='# Allow data dir access'
+    line='  {{ mysql_dir }}/** rwk,'
+    regexp='jenkins ALL = NOPASSWD: ALL'
+    state=present"
+  become: yes
+
+- name: Add mysql data directory read permissiosn to AppArmor
+  lineinfile: "dest=/etc/apparmor.d/usr.sbin.mysqld
+    insertafter='# Allow data dir access'
+    line='  {{ mysql_dir }}/ r,'
+    regexp='jenkins ALL = NOPASSWD: ALL'
+    state=present"
+  become: yes
+
+- name: Restart AppArmor
+  service:
+    name: apparmor
+    state: restarted
+
+- name: Restart MySql
+  service:
+    name: mysql
+    state: started

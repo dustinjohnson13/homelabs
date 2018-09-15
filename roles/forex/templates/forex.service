@@ -8,7 +8,9 @@ Group={{ forex_group }}
 Restart=always
 KillSignal=SIGQUIT
 WorkingDirectory={{ forex_user_home }}
-ExecStart={{ forex_user_home }}/{{ forex_executable }} --spring.profiles.active={{ forex_profile }} --oanda.api.token={{ oanda_api_token }}
+ExecStart={{ forex_user_home }}/{{ forex_executable }} --spring.profiles.active={{ forex_profiles }} \
+--oanda.api.token={{ oanda_api_token }} --spring.datasource.password={{ forex_db_password }} \
+--spring.datasource.username={{ forex_db_user}} --spring.datasource.url={{ forex_db_url }}
 
 [Install]
 WantedBy=multi-user.target
