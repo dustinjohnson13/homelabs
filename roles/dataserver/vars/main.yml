@@ -13,6 +13,12 @@ directories:
     mode: "0700"
 
 config_files:
+  mdadm:
+    src: maxresync.conf
+    dest: /etc/sysctl.d/maxresync.conf
+    owner: root
+    group: root
+    mode: "0622"
   nfs-exports:
     src: exports
     dest: /etc/exports
