@@ -38,6 +38,10 @@ jobs:
     repository_url: https://github.com/dustinjohnson13/flexget.git
     frequency: '@hourly'
     pipeline_file: 'Jenkinsfile'
+  Market_Performance:
+    repository_url: https://github.com/dustinjohnson13/market-performance.git
+    frequency: 'H 16 * * 1-5'
+    pipeline_file: 'Jenkinsfile'
   Nightly_Photo_and_Video_Processing:
     repository_url: https://github.com/dustinjohnson13/photo_and_video_processing.git
     frequency: '@daily'
