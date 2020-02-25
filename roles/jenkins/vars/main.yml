@@ -40,7 +40,7 @@ jobs:
     pipeline_file: 'Jenkinsfile'
   Market_Performance:
     repository_url: https://github.com/dustinjohnson13/market-performance.git
-    frequency: 'H 16 * * 1-5'
+    frequency: 'H 9,13,16 * * 1-5'
     pipeline_file: 'Jenkinsfile'
   Nightly_Photo_and_Video_Processing:
     repository_url: https://github.com/dustinjohnson13/photo_and_video_processing.git
