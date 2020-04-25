@@ -26,6 +26,16 @@ config_files:
     mode: "0600"
 
 jobs:
+  CodeMemo_Client:
+    repository_url: https://github.com/dustinjohnson13/codememo-client.git
+    frequency: ''
+    poll_frequency: 'H/15 * * * *'
+    pipeline_file: 'Jenkinsfile'
+  CodeMemo_Server:
+    repository_url: https://github.com/dustinjohnson13/codememo-server.git
+    frequency: ''
+    poll_frequency: 'H/15 * * * *'
+    pipeline_file: 'Jenkinsfile'
   Cox_Data_Usage_Retriever:
     repository_url: https://github.com/dustinjohnson13/cox-data-usage-retriever.git
     frequency: 'H 8 * * *'
@@ -38,6 +48,21 @@ jobs:
     repository_url: https://github.com/dustinjohnson13/flexget.git
     frequency: '@hourly'
     pipeline_file: 'Jenkinsfile'
+  Forex:
+    repository_url: https://github.com/dustinjohnson13/markets.git
+    frequency: ''
+    poll_frequency: '# Typical weekday
+                                     0 0-23 * * 1-4
+                                     # Sundays from 5-11 pm
+                                     0 17-23 * * 0
+                                     # Fridays from midnight to 4 pm
+                                     0 0-16 * * 5'
+    pipeline_file: 'Jenkinsfile'
+  Forex_Unit_Test:
+    repository_url: https://github.com/dustinjohnson13/markets.git
+    frequency: ''
+    poll_frequency: 'H/15 * * * *'
+    pipeline_file: 'UnitTestJenkinsfile'
   Market_Performance:
     repository_url: https://github.com/dustinjohnson13/market-performance.git
     frequency: 'H 9,13,16 * * 1-5'
@@ -62,18 +87,3 @@ jobs:
     repository_url: https://github.com/dustinjohnson13/jenkins-jobs.git
     frequency: '@daily'
     pipeline_file: 'Video_Sharing_Downloads_Jenkinsfile'
-  CodeMemo_Client:
-    repository_url: https://github.com/dustinjohnson13/codememo-client.git
-    frequency: ''
-    poll_frequency: 'H/15 * * * *'
-    pipeline_file: 'Jenkinsfile'
-  CodeMemo_Server:
-    repository_url: https://github.com/dustinjohnson13/codememo-server.git
-    frequency: ''
-    poll_frequency: 'H/15 * * * *'
-    pipeline_file: 'Jenkinsfile'
-  Forex:
-    repository_url: https://github.com/dustinjohnson13/forex.git
-    frequency: ''
-    poll_frequency: 'H/15 * * * *'
-    pipeline_file: 'Jenkinsfile'

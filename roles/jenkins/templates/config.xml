@@ -46,9 +46,10 @@
                     <int>2</int>
                     <string>EMAIL</string>
                     <string>{{ jenkins_email }}</string>
-                    <string>FOREX_TARGET_DIR</string>
-                    <!-- This variable comes from the forex role -->
-                    <string>{{ forex_user_home }}</string>
+                    <string>OANDA_API_TOKEN_LIVE</string>
+                    <string>{{ oanda_api_token_live }}</string>
+                    <string>OANDA_API_TOKEN_PRACTICE</string>
+                    <string>{{ oanda_api_token_practice }}</string>
                 </tree-map>
             </envVars>
         </hudson.slaves.EnvironmentVariablesNodeProperty>
