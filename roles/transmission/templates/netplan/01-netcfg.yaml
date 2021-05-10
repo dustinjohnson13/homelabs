@@ -9,6 +9,9 @@ network:
       dhcp6: no
       match:
         macaddress: {{ vpn_macaddress }}
+      nameservers:
+        # Use VPN servers for DNS so lookups aren't exposed
+        addresses: {{ vpn_nameservers }}
       routes:
       - to: 0.0.0.0/0
         via: {{ router_ip }}
@@ -19,6 +22,9 @@ network:
       dhcp6: no
       match:
         macaddress: {{ default_macaddress }}
+      nameservers:
+        # Use VPN servers for DNS so lookups aren't exposed
+        addresses: {{ vpn_nameservers }}
       routes:
       - to: 0.0.0.0/0
         via: {{ router_ip }}

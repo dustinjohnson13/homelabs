@@ -5,6 +5,7 @@ transmission_ip_leak_magnet_link: magnet:?xt=urn:btih:2a4e3807a937f43390d0d971b5
 transmission_ratio_limit: 0
 transmission_torrent_dir: "{{ apps_dir }}/downloads"
 transmission_watch_dir: "{{ transmission_torrent_dir }}/queue"
+vpn_nameservers: "[193.138.218.74, 10.8.0.1]"
 
 directories:
   transmission-daemon:
