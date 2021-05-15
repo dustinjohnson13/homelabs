@@ -3,7 +3,6 @@
     name: "{{ role }}"
   with_items:
     - common
-    - forex
     - java
   loop_control:
     loop_var: role
