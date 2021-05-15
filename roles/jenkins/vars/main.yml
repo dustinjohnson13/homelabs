@@ -26,64 +26,38 @@ config_files:
     mode: "0600"
 
 jobs:
-  CodeMemo_Client:
-    repository_url: https://github.com/dustinjohnson13/codememo-client.git
-    frequency: ''
-    poll_frequency: 'H/15 * * * *'
-    pipeline_file: 'Jenkinsfile'
-  CodeMemo_Server:
-    repository_url: https://github.com/dustinjohnson13/codememo-server.git
-    frequency: ''
-    poll_frequency: 'H/15 * * * *'
-    pipeline_file: 'Jenkinsfile'
-  Cox_Data_Usage_Retriever:
-    repository_url: https://github.com/dustinjohnson13/cox-data-usage-retriever.git
-    frequency: 'H 8 * * *'
-    pipeline_file: 'Jenkinsfile'
-  Craigslist_Search:
-    repository_url: https://github.com/dustinjohnson13/craigslist.git
-    frequency: ''
-    pipeline_file: 'Jenkinsfile'
   Download_TV_Shows_Via_FlexGet:
     repository_url: https://github.com/dustinjohnson13/flexget.git
     frequency: '@hourly'
+    poll_frequency: ''
     pipeline_file: 'Jenkinsfile'
-  Forex:
-    repository_url: https://github.com/dustinjohnson13/markets.git
-    frequency: ''
-    poll_frequency: '# Typical weekday
-                                     0 0-23 * * 1-4
-                                     # Sundays from 5-11 pm
-                                     0 17-23 * * 0
-                                     # Fridays from midnight to 4 pm
-                                     0 0-16 * * 5'
-    pipeline_file: 'Jenkinsfile'
-  Forex_Unit_Test:
-    repository_url: https://github.com/dustinjohnson13/markets.git
-    frequency: ''
-    poll_frequency: 'H/15 * * * *'
-    pipeline_file: 'UnitTestJenkinsfile'
   Market_Performance:
     repository_url: https://github.com/dustinjohnson13/market-performance.git
     frequency: 'H 9,13,16 * * 1-5'
+    poll_frequency: ''
     pipeline_file: 'Jenkinsfile'
   Nightly_Photo_and_Video_Processing:
     repository_url: https://github.com/dustinjohnson13/photo_and_video_processing.git
     frequency: '@daily'
+    poll_frequency: ''
     pipeline_file: 'Jenkinsfile'
   RAID_Failure_Check:
     repository_url: https://github.com/dustinjohnson13/jenkins-jobs.git
     frequency: '@hourly'
+    poll_frequency: ''
     pipeline_file: 'RAID_Failure_Check_Jenkinsfile'
   RAID_Status:
     repository_url: https://github.com/dustinjohnson13/jenkins-jobs.git
     frequency: 'H 5 * * 1'
+    poll_frequency: ''
     pipeline_file: 'RAID_Status_Jenkinsfile'
   Set_Torrent_Seed_Ratio:
     repository_url: https://github.com/dustinjohnson13/jenkins-jobs.git
     frequency: ''
+    poll_frequency: ''
     pipeline_file: 'Set_Torrent_Seed_Ratio_Jenkinsfile'
   Video_Sharing_Downloads:
     repository_url: https://github.com/dustinjohnson13/jenkins-jobs.git
     frequency: '@daily'
+    poll_frequency: ''
     pipeline_file: 'Video_Sharing_Downloads_Jenkinsfile'

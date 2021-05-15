@@ -1,9 +1,9 @@
-plex_version: 1.13.5.5291-6fa5e50a8
+plex_version: 1.22.3.4523-d0ce30438
 plex_file: "plexmediaserver_{{ plex_version }}_amd64.deb"
 
-ums_version: 6.7.2
+ums_version: 10.5.0
 ums_dir: "{{ apps_dir }}/ums-{{ ums_version }}"
-ums_file: "UMS-{{ ums_version }}.tgz"
+ums_file: "UMS-{{ ums_version }}-x86_64.tgz"
 
 config_files:
   plex:

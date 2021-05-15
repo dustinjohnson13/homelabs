@@ -5,10 +5,9 @@
 - include_vars: main.yml
 
 - name: Install list of packages
-  apt: name={{item}} state=present
-  with_items:
-    - transmission-daemon
-    - transmission-cli
+  apt:
+    name: ['transmission-daemon', 'transmission-cli']
+    state: present
 
 - name: Create necessary directories
   file: path={{ item.value.path }} owner={{ item.value.owner }} group={{ item.value.group }} state=directory mode={{ item.value.mode }}

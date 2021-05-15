@@ -9,13 +9,9 @@
   with_dict: "{{ directories }}"
 
 - name: Install list of packages
-  apt: name={{item}} state=present
-  with_items:
-    - mysql-server-5.7
-    - nfs-kernel-server
-    - ntp
-    - python-mysqldb
-    - samba
+  apt:
+    name: ['mysql-server-8.0', 'nfs-kernel-server', 'ntp', 'samba']
+    state: present
 
 - name: Stop MySql
   service:
