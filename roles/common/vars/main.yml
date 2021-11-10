@@ -8,7 +8,7 @@ music_dir: "{{ archives_dir }}/audio/music"
 tv_dir: "{{ archives_dir }}/video/tv"
 
 downloads_dir: "{{ apps_dir }}/downloads"
-completed_downloads_dir: "{{ downloads_dir }}/complete"
+completed_downloads_dir: "{{ downloads_dir }}/completed"
 incomplete_downloads_dir: "{{ downloads_dir }}/incomplete"
 
 directories:
