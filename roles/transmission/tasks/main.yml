@@ -28,17 +28,16 @@
 
 - name: Copy configuration files
   template: src={{ item }} dest={{ apps_dir }}/{{ item }} owner=root group=root mode=0777
-  loop: [ 'docker-compose.yml', 'production.yml' ]
+  loop: [ 'docker-compose.yml', 'flexget-home/config.yml' ]
+
+- name: Copy Docker env file
+  template: src=dockerenv dest="{{ apps_dir }}/.env" owner=root group=root mode=0777
 
 - name: Create and start services
   community.docker.docker_compose:
     project_src: "{{ apps_dir }}"
     files:
       - docker-compose.yml
-      - production.yml
-  environment:
-    TRANSMISSION_DIR: "{{ transmission_torrent_dir }}"
-    VPN_USERNAME: "{{ vpn_username }}"
 
 - name: Add ipleak.net torrent to transmission
   shell: 'transmission-remote -a "{{ transmission_ip_leak_magnet_link }}"'

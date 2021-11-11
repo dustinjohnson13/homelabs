@@ -1,8 +1,9 @@
 transmission_ip_leak_magnet_link: magnet:?xt=urn:btih:2a4e3807a937f43390d0d971b58b332be5221ac2&tr=https://ipleak.net/announce.php%3Fh%3D2a4e3807a937f43390d0d971b58b332be5221ac2&dn=ipleak.net+torrent+detection
+transmission_torrent_dir: "{{ apps_dir }}/downloads"
 
 directories:
-  transmission-daemon:
-    path: "{{ transmission_torrent_dir }}"
+  flexget-home:
+    path: "{{ apps_dir }}/flexget-home"
     owner: root
     group: root
     mode: "0777"

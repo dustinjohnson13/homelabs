@@ -1,0 +1,2 @@
+VPN_USERNAME={{ vpn_username }}
+TRANSMISSION_DIR={{ transmission_torrent_dir }}

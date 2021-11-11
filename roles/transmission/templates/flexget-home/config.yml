@@ -1,0 +1,27 @@
+schedules:
+  - tasks: '*'
+    interval:
+      hours: 1
+
+tasks:
+  tv task:
+    rss: {{ tv_rss_feed }}
+    all_series: yes
+    transmission:
+      host: transmission-openvpn
+      port: 9091
+      ratio: 0
+  remove stale torrents:
+    from_transmission:
+      host: transmission-openvpn
+      only_complete: yes
+      port: 9091
+    disable: [ seen, seen_info_hash ]
+    if:
+      - transmission_progress == 100: accept
+    transmission:
+      host: transmission-openvpn
+      port: 9091
+      action: remove
+
+web_server: no
