@@ -1,8 +1,8 @@
 version: '3.3'
 services:
   flexget:
-    image: cpoppema/docker-flexget
     container_name: flexget
+    image: cpoppema/docker-flexget
     environment:
       - PUID=65534
       - PGID=65534
@@ -11,13 +11,28 @@ services:
       - TZ=America/Chicago
       - FLEXGET_LOG_LEVEL=debug
     volumes:
-      - './flexget-home:/config'
-      - '${TRANSMISSION_DIR:-./data}:/downloads'
+      - '${FLEXGET_DIR:-./flexget}/config:/config'
+      - '${TRANSMISSION_DIR:-./transmission}/downloads:/downloads'
     ports:
       - 5050:5050
     restart: unless-stopped
 
+  plex:
+    image: lscr.io/linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=65534
+      - PGID=65534
+      - VERSION=docker
+    volumes:
+      - '${PLEX_DIR:-./plex}/config:/config'
+      - '${MOVIES_DIR:-./plex/movies}:/movies'
+      - '${TV_DIR:-./plex/tv}:/tv'
+    restart: unless-stopped
+
   transmission-openvpn:
+    container_name: transmission
     image: haugene/transmission-openvpn
     cap_add:
       - NET_ADMIN
@@ -32,7 +47,7 @@ services:
       options:
         max-size: 10m
     volumes:
-      - '${TRANSMISSION_DIR:-./data}:/data'
+      - '${TRANSMISSION_DIR:-./transmission}:/data'
     ports:
       - '9091:9091'
     restart: unless-stopped

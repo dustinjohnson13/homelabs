@@ -1,2 +1,4 @@
-VPN_USERNAME={{ vpn_username }}
+MOVIES_DIR={{ movies_dir }}
 TRANSMISSION_DIR={{ transmission_torrent_dir }}
+TV_DIR={{ tv_dir }}
+VPN_USERNAME={{ vpn_username }}

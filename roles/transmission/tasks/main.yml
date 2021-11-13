@@ -28,7 +28,7 @@
 
 - name: Copy configuration files
   template: src={{ item }} dest={{ apps_dir }}/{{ item }} owner=root group=root mode=0777
-  loop: [ 'docker-compose.yml', 'flexget-home/config.yml' ]
+  loop: [ 'docker-compose.yml', 'flexget/config.yml' ]
 
 - name: Copy Docker env file
   template: src=dockerenv dest="{{ apps_dir }}/.env" owner=root group=root mode=0777
