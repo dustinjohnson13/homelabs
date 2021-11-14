@@ -6,11 +6,6 @@ directories:
     owner: root
     group: root
     mode: "0777"
-  mysql:
-    path: "{{ mysql_dir }}"
-    owner: root
-    group: root
-    mode: "0700"
 
 config_files:
   mdadm:

@@ -31,31 +31,11 @@ jobs:
     frequency: '@hourly'
     poll_frequency: ''
     pipeline_file: 'Jenkinsfile'
-  Market_Performance:
-    repository_url: https://github.com/dustinjohnson13/market-performance.git
-    frequency: 'H 9,13,16 * * 1-5'
-    poll_frequency: ''
-    pipeline_file: 'Jenkinsfile'
   Nightly_Photo_and_Video_Processing:
     repository_url: https://github.com/dustinjohnson13/photo_and_video_processing.git
     frequency: '@daily'
     poll_frequency: ''
     pipeline_file: 'Jenkinsfile'
-  RAID_Failure_Check:
-    repository_url: https://github.com/dustinjohnson13/jenkins-jobs.git
-    frequency: '@hourly'
-    poll_frequency: ''
-    pipeline_file: 'RAID_Failure_Check_Jenkinsfile'
-  RAID_Status:
-    repository_url: https://github.com/dustinjohnson13/jenkins-jobs.git
-    frequency: 'H 5 * * 1'
-    poll_frequency: ''
-    pipeline_file: 'RAID_Status_Jenkinsfile'
-  Set_Torrent_Seed_Ratio:
-    repository_url: https://github.com/dustinjohnson13/jenkins-jobs.git
-    frequency: ''
-    poll_frequency: ''
-    pipeline_file: 'Set_Torrent_Seed_Ratio_Jenkinsfile'
   Video_Sharing_Downloads:
     repository_url: https://github.com/dustinjohnson13/jenkins-jobs.git
     frequency: '@daily'

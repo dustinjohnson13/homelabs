@@ -10,65 +10,21 @@
 
 - name: Install list of packages
   apt:
-    name: ['mysql-server-8.0', 'nfs-kernel-server', 'ntp', 'samba']
+    name: ['nfs-kernel-server', 'ntp', 'samba']
     state: present
-
-- name: Stop MySql
-  service:
-    name: mysql
-    state: stopped
-
-- name: Delete current MySql data directory
-  file: path="/var/lib/mysql" state=absent
-
-- name: Create symbolic link for MySql data directory
-  file:
-    src: "{{ mysql_dir }}"
-    path: "/var/lib/mysql"
-    state: link
-
-- name: Make sure mysql owns its data directory
-  file: path={{ mysql_dir }} owner=mysql group=mysql
-  become: yes
 
 - name: Copy configuration files
   template: src={{ item.value.src }} dest={{ item.value.dest }} owner={{ item.value.owner }} group={{ item.value.group }} mode={{ item.value.mode }}
   with_dict: "{{ config_files }}"
 
-- name: Add mysql data directory read/write permissions to AppArmor
-  lineinfile: "dest=/etc/apparmor.d/usr.sbin.mysqld
-    insertafter='# Allow data dir access'
-    line='  {{ mysql_dir }}/ rwk,'
-    state=present"
-  become: yes
+- name: RAID failure check cron
+  cron:
+    name: "check for RAID failure"
+    special_time: hourly
+    job: '[ $(cat /proc/mdstat | grep "[UUUU]" | wc -l) = "4" ] || DegradedRAIDArrayFound'
 
-- name: Add mysql data directory read permissions to AppArmor
-  lineinfile: "dest=/etc/apparmor.d/usr.sbin.mysqld
-    insertafter='# Allow data dir access'
-    line='  {{ mysql_dir }}/ r,'
-    state=present"
-  become: yes
-
-- name: Add mysql data directory file read/write permissions to AppArmor
-  lineinfile: "dest=/etc/apparmor.d/usr.sbin.mysqld
-    insertafter='# Allow data files dir access'
-    line='  {{ mysql_dir }}/** rwk,'
-    state=present"
-  become: yes
-
-- name: Add mysql data directory file read permissions to AppArmor
-  lineinfile: "dest=/etc/apparmor.d/usr.sbin.mysqld
-    insertafter='# Allow data files dir access'
-    line='  {{ mysql_dir }}/** r,'
-    state=present"
-  become: yes
-
-- name: Restart AppArmor
-  service:
-    name: apparmor
-    state: restarted
-
-- name: Restart MySql
-  service:
-    name: mysql
-    state: started
+- name: RAID status cron
+  cron:
+    name: "email raid status"
+    special_time: weekly
+    job: 'cat /proc/mdstat | mail -s "RAID Status" {{ cron_email }}'
