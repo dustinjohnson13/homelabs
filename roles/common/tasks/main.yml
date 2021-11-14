@@ -8,7 +8,7 @@
 
 - name: Install list of packages
   apt:
-    name: ['screen']
+    name: ['screen', 'git']
     state: present
 
 - name: Add destination email for cron failures

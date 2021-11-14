@@ -26,11 +26,6 @@ config_files:
     mode: "0600"
 
 jobs:
-  Download_TV_Shows_Via_FlexGet:
-    repository_url: https://github.com/dustinjohnson13/flexget.git
-    frequency: '@hourly'
-    poll_frequency: ''
-    pipeline_file: 'Jenkinsfile'
   Nightly_Photo_and_Video_Processing:
     repository_url: https://github.com/dustinjohnson13/photo_and_video_processing.git
     frequency: '@daily'

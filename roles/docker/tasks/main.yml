@@ -46,15 +46,15 @@
     dest: '{{ apps_dir }}/transmission'
     state: link
 
-- name: open permissions for completed downloads
+- name: Copy cron scripts
+  template: src="cron/{{ item }}" dest={{ cron_jobs_dir }}/{{ item }} owner=root group=root mode=0700
+  loop: [ 'moveTVShows.sh' ]
+
+- name: cron job to move completed downloads
   cron:
-    name: "open permissions for completed downloads"
-    day: "*"
-    minute: "*"
-    hour: "*"
-    month: "*"
-    weekday: "*"
-    job: "chmod -R 777 {{ completed_downloads_dir }}/* > /dev/null"
+    name: "move completed downloads"
+    special_time: hourly
+    job: "{{ cron_jobs_dir }}/moveTVShows.sh > /dev/null"
 
 - name: Add ipleak.net torrent to transmission
   shell: 'transmission-remote -a "{{ transmission_ip_leak_magnet_link }}"'
