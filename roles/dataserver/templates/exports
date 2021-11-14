@@ -9,4 +9,4 @@
 # /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)
 #
 
-{{ data_dir }} {{ base_network }}/24(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=100)
+{{ data_dir }} {{ base_network }}/16(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=100)
