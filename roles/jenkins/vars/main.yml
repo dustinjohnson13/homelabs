@@ -26,11 +26,6 @@ config_files:
     mode: "0600"
 
 jobs:
-  Nightly_Photo_and_Video_Processing:
-    repository_url: https://github.com/dustinjohnson13/photo_and_video_processing.git
-    frequency: '@daily'
-    poll_frequency: ''
-    pipeline_file: 'Jenkinsfile'
   Video_Sharing_Downloads:
     repository_url: https://github.com/dustinjohnson13/jenkins-jobs.git
     frequency: '@daily'

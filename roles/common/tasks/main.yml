@@ -8,7 +8,7 @@
 
 - name: Install list of packages
   apt:
-    name: ['screen', 'git']
+    name: ['screen', 'git', 'tmpreaper']
     state: present
 
 - name: Add destination email for cron failures
@@ -16,3 +16,9 @@
     name: MAILTO
     env: yes
     job: '{{ cron_email }}'
+
+- name: cron job to clean tmp dir
+  cron:
+    name: "clean tmp dir"
+    special_time: daily
+    job: "tmpreaper 2d /tmp > /dev/null"
