@@ -1,0 +1,10 @@
+authinfo_dir: /etc/mail/authinfo
+authinfo_filename: gmail-auth
+authinfo_file: "{{ authinfo_dir }}/{{ authinfo_filename }}"
+
+directories:
+  authinfo:
+    path: "{{ authinfo_dir }}"
+    owner: root
+    group: root
+    mode: "0700"

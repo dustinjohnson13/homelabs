@@ -1,0 +1,46 @@
+---
+- include_role:
+    name: common
+
+- include_vars: main.yml
+
+- name: Create necessary directories
+  file: path={{ item.value.path }} owner={{ item.value.owner }} group={{ item.value.group }} state=directory mode={{ item.value.mode }}
+  with_dict: "{{ directories }}"
+
+- name: Install list of packages
+  apt:
+    name: [ 'sendmail', 'mailutils', 'sendmail-bin' ]
+    state: present
+
+- name: Create sendmail auth file
+  copy:
+    dest: '{{ authinfo_file }}'
+    content: 'AuthInfo: "U:root" "I:{{ sendmail_username }}" "P:{{ sendmail_password }}"'
+
+- name: Create sendmail auth file hash
+  shell: 'makemap hash {{ authinfo_filename }} < {{ authinfo_filename }}'
+  args:
+    chdir: "{{ authinfo_dir }}"
+
+- name: Add sendmail auth directives
+  lineinfile:
+    path: /etc/mail/sendmail.mc
+    insertafter: 'MAILER_DEFINITIONS'
+    line: '{{ item }}'
+    state: present
+  loop: [
+      "FEATURE(`authinfo',`hash -o {{ authinfo_file }}.db')dnl",
+      "define(`confAUTH_MECHANISMS', `EXTERNAL GSSAPI DIGEST-MD5 CRAM-MD5 LOGIN PLAIN')dnl",
+      "TRUST_AUTH_MECH(`EXTERNAL DIGEST-MD5 CRAM-MD5 LOGIN PLAIN')dnl",
+      "define(`confAUTH_OPTIONS', `A p')dnl",
+      "define(`ESMTP_MAILER_ARGS', `TCP $h 587')dnl",
+      "define(`RELAY_MAILER_ARGS', `TCP $h 587')dnl",
+      "define(`SMART_HOST',`[ smtp.gmail.com ]')dnl",
+  ]
+
+- name: Rebuild sendmail configuration
+  shell: 'make -C /etc/mail'
+
+- name: Restart sendmail
+  service: name=sendmail state=restarted

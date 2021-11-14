@@ -10,3 +10,9 @@
   apt:
     name: ['screen']
     state: present
+
+- name: Add destination email for cron failures
+  cron:
+    name: MAILTO
+    env: yes
+    job: '{{ cron_email }}'

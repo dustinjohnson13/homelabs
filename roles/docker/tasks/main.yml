@@ -36,8 +36,25 @@
 - name: Create and start services
   community.docker.docker_compose:
     project_src: "{{ apps_dir }}"
+    tls_hostname: localhost
     files:
       - docker-compose.yml
+
+- name: Create transmission symbolic link
+  file:
+    src: '{{ transmission_torrent_dir }}/transmission-home'
+    dest: '{{ apps_dir }}/transmission'
+    state: link
+
+- name: open permissions for completed downloads
+  cron:
+    name: "open permissions for completed downloads"
+    day: "*"
+    minute: "*"
+    hour: "*"
+    month: "*"
+    weekday: "*"
+    job: "chmod -R 777 {{ completed_downloads_dir }}/* > /dev/null"
 
 - name: Add ipleak.net torrent to transmission
   shell: 'transmission-remote -a "{{ transmission_ip_leak_magnet_link }}"'
