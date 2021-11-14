@@ -10,7 +10,14 @@
 
 - name: Install required system packages
   apt: name={{ item }} state=latest update_cache=yes
-  loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools', 'transmission-cli' ]
+  loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common',
+          'python3-pip', 'virtualenv', 'python3-setuptools', 'transmission-cli', 'ffmpeg',
+    # Required by photo/video processing
+          'libimage-exiftool-perl', 'par2', 'rename'
+  ]
+
+- name: Install yt-dlp
+  shell: 'python3 -m pip install -U yt-dlp'
 
 - name: Add Docker GPG apt Key
   apt_key:
@@ -48,7 +55,7 @@
 
 - name: Copy cron scripts
   template: src="cron/{{ item }}" dest={{ cron_jobs_dir }}/{{ item }} owner=root group=root mode=0700
-  loop: [ 'moveTVShows.sh', 'processPhotosAndVideos.sh' ]
+  loop: [ 'moveTVShows.sh', 'processPhotosAndVideos.sh', 'sharingVideoDownloads.sh' ]
 
 - name: cron job to move completed downloads
   cron:
@@ -61,6 +68,12 @@
     name: "photo and video processing"
     special_time: daily
     job: "{{ cron_jobs_dir }}/processPhotosAndVideos.sh > /dev/null"
+
+- name: cron job for sharing video downloads
+  cron:
+    name: "download sharing videos"
+    special_time: daily
+    job: "{{ cron_jobs_dir }}/sharingVideoDownloads.sh > /dev/null"
 
 - name: Add ipleak.net torrent to transmission
   shell: 'transmission-remote -a "{{ transmission_ip_leak_magnet_link }}"'

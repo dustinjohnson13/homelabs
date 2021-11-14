@@ -1,8 +1,0 @@
----
-- include_vars: main.yml
-
-- name: Install Java 11
-  become: yes
-  apt:
-    name: ['openjdk-11-jre-headless']
-    state: latest

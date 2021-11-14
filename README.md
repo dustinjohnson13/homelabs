@@ -1,6 +1,5 @@
 ## Steps
 
-- Download Plex and Universal Media Server binaries from Server/Dropbox/Google/
 - Install Ubuntu with OpenSSH server support
 - `sudo apt dist-upgrade`
 - `sudo apt install python2 net-tools`
@@ -12,21 +11,12 @@ On Laptop
 On Server  
 - `wget https://bootstrap.pypa.io/pip/2.7/get-pip.py`
 - `sudo python2 get-pip.py`
-- `pip install ansible pyyaml python-jenkins`
+- `pip install ansible pyyaml`
 
 On Laptop
 - `brew install ansible`
 - `echo '<vault password>' > ~/.vault_password`
 - `ansible-playbook -i '<ip address>,' --vault-password-file=~/.vault_password --ask-become-pass configure.yml`
-
-On Server
-- Configure Jenkins email-ext plugin with:
-    - smtp.gmail.com
-    - SSL
-    - port 465
-    - credentials
-    - jenkins@ubuntuserver.com
-    - Default Recipients
 
 ## For Testing Via VirtualBox
 - Install Virtualbox

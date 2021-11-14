@@ -1,8 +1,0 @@
-forex_db: forex
-forex_db_url: jdbc:mysql://localhost/{{ forex_db }}
-forex_db_user: forex
-forex_executable: forex.jar
-forex_group: forex
-forex_profiles: demo,mysql
-forex_user: forex
-forex_user_home: '{{ apps_dir }}/forex'
