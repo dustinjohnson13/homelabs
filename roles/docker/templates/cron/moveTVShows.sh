@@ -1,6 +1,6 @@
 COMPLETED_DIR="{{ completed_downloads_dir }}"
 TV_DIR="{{ tv_dir }}"
-DIR="/tmp/moveTVShows-`date +%s}`"
+DIR="/tmp/cron/moveTVShows-`date +%s}`"
 
 mkdir -p "$DIR"
 cd "$DIR"

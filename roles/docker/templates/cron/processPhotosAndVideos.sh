@@ -1,4 +1,4 @@
-DIR="/tmp/processPhotosAndVideos-`date +%s}`"
+DIR="/tmp/cron/processPhotosAndVideos-`date +%s}`"
 
 mkdir -p "$DIR"
 cd "$DIR"
