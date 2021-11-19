@@ -21,4 +21,4 @@
   cron:
     name: "clean tmp dir"
     special_time: daily
-    job: "[[ -d /tmp/cron ]] && /usr/sbin/tmpreaper 2d /tmp/cron > /dev/null"
+    job: "[ -d /tmp/cron ] && /usr/sbin/tmpreaper 2d /tmp/cron > /dev/null"
