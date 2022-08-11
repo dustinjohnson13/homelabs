@@ -42,6 +42,9 @@ services:
       - OPENVPN_USERNAME=${VPN_USERNAME}
       - OPENVPN_PASSWORD=m
       - LOCAL_NETWORK=192.168.0.0/16
+      - TRANSMISSION_DOWNLOAD_QUEUE_ENABLED=false
+      - TRANSMISSION_DOWNLOAD_QUEUE_SIZE=999
+      - TRANSMISSION_QUEUE_STALLED_ENABLED=false
     logging:
       driver: json-file
       options:
