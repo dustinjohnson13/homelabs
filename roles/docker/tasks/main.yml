@@ -12,7 +12,7 @@
   apt: name={{ item }} state=latest update_cache=yes
   loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common',
           'python3-pip', 'virtualenv', 'python3-setuptools', 'transmission-cli', 'ffmpeg',
-          'openjdk-16-jdk',
+          'openjdk-18-jdk',
     # Required by photo/video processing
           'libimage-exiftool-perl', 'par2', 'rename'
   ]
@@ -27,7 +27,7 @@
 
 - name: Add Docker Repository
   apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable"
     state: present
 
 - name: Update apt and install docker-compose
