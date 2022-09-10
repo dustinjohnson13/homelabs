@@ -21,7 +21,7 @@
   cron:
     name: "check for RAID failure"
     special_time: hourly
-    job: '[ $(cat /proc/mdstat | grep "UUUU" | wc -l) = "4" ] || DegradedRAIDArrayFound'
+    job: '[ $(cat /proc/mdstat | grep "UUUUU" | wc -l) = "4" ] || DegradedRAIDArrayFound'
 
 - name: RAID status cron
   cron:
