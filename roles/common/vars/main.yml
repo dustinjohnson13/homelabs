@@ -1,5 +1,7 @@
 cron_email: "{{ sendmail_username }}"
 cron_jobs_dir: "/var/cron"
+timezone: "America/Chicago"
+timezone_file: "/usr/share/zoneinfo/{{ timezone }}"
 
 data_dir: /data
 apps_dir: "{{ data_dir }}/apps"

@@ -6,6 +6,18 @@
   file: path={{ item.value.path }} owner={{ item.value.owner }} group={{ item.value.group }} state=directory mode={{ item.value.mode }}
   with_dict: "{{ directories }}"
 
+- name: Create a timezone symbolic link
+  file:
+    src: '{{ timezone_file }}'
+    dest: /etc/localtime
+    owner: root
+    group: root
+    state: link
+    force: true
+
+- name: Copy timezone
+  template: src=timezone dest=/etc/timezone owner=root group=root mode=0622
+
 - name: Install list of packages
   apt:
     name: ['screen', 'git', 'tmpreaper', 'wget']
