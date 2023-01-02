@@ -17,6 +17,24 @@ services:
       - 5050:5050
     restart: unless-stopped
 
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+      - JELLYFIN_PublishedServerUrl=192.168.254.11
+    volumes:
+      - '${JELLYFIN_DIR:-./jellyfin}/config:/config'
+      - '${MOVIES_DIR:-./jellyfin/movies}:/data/movies'
+      - '${TV_DIR:-./jellyfin/tv}:/data/tvshows'
+    ports:
+      - 8096:8096
+      - 7359:7359/udp
+      - 1900:1900/udp
+    restart: unless-stopped
+
   plex:
     image: lscr.io/linuxserver/plex
     container_name: plex
