@@ -55,8 +55,10 @@ services:
     cap_add:
       - NET_ADMIN
     environment:
+      # Temporary until https://github.com/haugene/vpn-configs-contrib/pull/305 is reverted
       - OPENVPN_PROVIDER=MULLVAD
-      - OPENVPN_CONFIG=ch_all
+      - GITHUB_CONFIG_SOURCE_REPO=divadsn/vpn-configs-contrib-mullvad
+      - OPENVPN_CONFIG=ch_all # us_den
       - OPENVPN_USERNAME=${VPN_USERNAME}
       - OPENVPN_PASSWORD=m
       - LOCAL_NETWORK=192.168.0.0/16
