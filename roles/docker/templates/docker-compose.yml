@@ -54,6 +54,8 @@ services:
     image: haugene/transmission-openvpn
     cap_add:
       - NET_ADMIN
+    devices:
+      - /dev/net/tun
     environment:
       # Temporary until https://github.com/haugene/vpn-configs-contrib/pull/305 is reverted
       - OPENVPN_PROVIDER=MULLVAD
