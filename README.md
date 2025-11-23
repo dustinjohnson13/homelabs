@@ -2,21 +2,19 @@
 
 - Install Ubuntu with OpenSSH server support
 - `sudo apt dist-upgrade`
-- `sudo apt install python2 net-tools`
+- `sudo apt install net-tools`
 - `ifconfig` (to get ip address)
 
 On Laptop         
 - `ssh-copy-id -i ~/.ssh/lan <user>@<ip address>`
 
 On Server  
-- `wget https://bootstrap.pypa.io/pip/2.7/get-pip.py`
-- `sudo python2 get-pip.py`
-- `pip install ansible pyyaml`
+- `apt install python3-pip`
 
 On Laptop
 - `brew install ansible`
 - `echo '<vault password>' > ~/.vault_password`
-- `ansible-playbook -i '<ip address>,' --vault-password-file=~/.vault_password --ask-become-pass configure.yml`
+- `ansible-playbook -i 'ubuntuserver,' --vault-password-file=~/.vault_password --ask-become-pass configure.yml`
 
 ## For Testing Via VirtualBox
 - Install Virtualbox

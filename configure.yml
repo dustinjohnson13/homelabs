@@ -3,6 +3,37 @@
   hosts: all
   become: true
 
+  pre_tasks:
+    - name: Remove all conflicting Docker repository entries
+      shell: |
+        set +e
+        # Remove Docker repo files (all variations)
+        rm -f /etc/apt/sources.list.d/docker*.list
+        rm -f /etc/apt/sources.list.d/*docker*.list
+        rm -f /etc/apt/sources.list.d/*Docker*.list
+        
+        # Also check and remove from main sources.list if present
+        if [ -f /etc/apt/sources.list ]; then
+          sed -i '/download\.docker\.com\/linux\/ubuntu/d' /etc/apt/sources.list
+        fi
+        
+        # Clean apt cache and remove any cached source lists
+        apt-get clean 2>&1 || true
+        rm -rf /var/lib/apt/lists/*docker* 2>&1 || true
+        rm -rf /var/lib/apt/lists/partial/*docker* 2>&1 || true
+        
+        # Verify removal
+        echo "=== Remaining Docker files ==="
+        ls -la /etc/apt/sources.list.d/*docker* 2>&1 || echo "No Docker files found"
+        echo "=== Docker repo entries ==="
+        grep -r "download.docker.com" /etc/apt/sources.list.d/ /etc/apt/sources.list 2>&1 || echo "No Docker repo entries found"
+      ignore_errors: yes
+      register: cleanup_result
+
+    - name: Display cleanup result
+      debug:
+        var: cleanup_result.stdout_lines
+
   roles:
     - dataserver
     - docker
