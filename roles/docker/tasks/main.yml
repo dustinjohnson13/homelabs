@@ -12,7 +12,7 @@
   apt: name={{ item }} state=latest update_cache=yes
   loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common',
           'python3-pip', 'virtualenv', 'python3-setuptools', 'transmission-cli', 'ffmpeg',
-          'openjdk-25-jre-headless', 'yt-dlp',
+          'openjdk-25-jre-headless',
     # Required by photo/video processing
           'libimage-exiftool-perl', 'par2', 'rename'
   ]
@@ -35,9 +35,15 @@
     state: present
     filename: docker
 
-- name: Update apt and install docker-compose
+- name: Add yt-dlp Repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://ppa.launchpadcontent.net/tomtomtom/yt-dlp/ubuntu noble stable"
+    state: present
+    filename: yt-dlp
+
+- name: Update apt and install libraries
   apt: update_cache=yes name={{ item }} state=latest
-  loop: [ 'docker-ce', 'docker-compose' ]
+  loop: [ 'docker-ce', 'docker-compose', 'yt-dlp' ]
 
 - name: Copy configuration files
   template: src={{ item }} dest={{ apps_dir }}/{{ item }} owner=root group=root mode=0777
